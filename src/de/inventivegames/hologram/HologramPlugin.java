@@ -3,7 +3,6 @@ package de.inventivegames.hologram;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.MetricsLite;
 
 public class HologramPlugin extends JavaPlugin implements Listener {
 
@@ -12,7 +11,6 @@ public class HologramPlugin extends JavaPlugin implements Listener {
 	boolean usePackets = false;
 
 	@Override
-	@SuppressWarnings("unused")
 	public void onEnable() {
 		instance = this;
 		Bukkit.getPluginManager().registerEvents(new HologramListeners(), this);
@@ -24,18 +22,11 @@ public class HologramPlugin extends JavaPlugin implements Listener {
 			HologramAPI.packetsEnabled = true;
 		}
 
-		if (Bukkit.getPluginManager().isPluginEnabled("ProtocolSupport")) {
-			System.out.println("[HologramAPI] Found ProtocolSupport.");
+		if (Bukkit.getPluginManager().isPluginEnabled("ViaVersion")) {
+			System.out.println("[HologramAPI] Found ViaVersion.");
 			HologramAPI.enableProtocolSupport();
 		}
 
-		try {
-			MetricsLite metrics = new MetricsLite(this);
-			if (metrics.start()) {
-				getLogger().info("Metrics started");
-			}
-		} catch (Exception e) {
-		}
 	}
 
 	@Override
